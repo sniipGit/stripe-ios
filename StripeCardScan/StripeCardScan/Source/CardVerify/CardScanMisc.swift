@@ -4,7 +4,7 @@ protocol CaptureOutputDelegate {
     func capture(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
 }
 
-class CreditCard: NSObject {
+public class CreditCard: NSObject {
     var number: String
     var expiryMonth: String?
     var expiryYear: String?
