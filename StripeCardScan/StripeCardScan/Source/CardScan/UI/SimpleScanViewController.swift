@@ -58,12 +58,12 @@ import UIKit
  the most sense for your app.
  */
 
-protocol SimpleScanDelegate: AnyObject {
+open protocol SimpleScanDelegate: AnyObject {
     func userDidCancelSimple(_ scanViewController: SimpleScanViewController)
     func userDidScanCardSimple(_ scanViewController: SimpleScanViewController, creditCard: CreditCard)
 }
 
-class SimpleScanViewController: ScanBaseViewController {
+open class SimpleScanViewController: ScanBaseViewController {
 
     // used by ScanBase
     var previewView: PreviewView = PreviewView()
@@ -218,7 +218,7 @@ class SimpleScanViewController: ScanBaseViewController {
         torchButton.addTarget(self, action: #selector(torchButtonPress), for: .touchUpInside)
     }
     
-    func setupDescriptionTextUi() {
+    open func setupDescriptionTextUi() {
         descriptionText.text = SimpleScanViewController.descriptionString
         descriptionText.textColor = .white
         descriptionText.textAlignment = .center
@@ -264,7 +264,7 @@ class SimpleScanViewController: ScanBaseViewController {
         enableCameraPermissionsText.isHidden = true
     }
 
-    func setupPrivacyLinkTextUi() {
+    open func setupPrivacyLinkTextUi() {
         let stringData = Data(SimpleScanViewController.privacyLinkString.utf8)
 
         if let attributedString = try? NSAttributedString(data: stringData, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
@@ -283,14 +283,14 @@ class SimpleScanViewController: ScanBaseViewController {
         ]
     }
     
-    func setupDebugViewUi() {
+    open func setupDebugViewUi() {
         debugView = UIImageView()
         guard let debugView = debugView else { return }
         self.view.addSubview(debugView)
     }
     
     // MARK: -Autolayout constraints
-    func setupConstraints() {
+    open func setupConstraints() {
         let children: [UIView] = [previewView, blurView, roiView, descriptionText, closeButton, torchButton, numberText, expiryText, nameText, expiryLayoutView, enableCameraPermissionsButton, enableCameraPermissionsText, privacyLinkText]
         for child in children {
             child.translatesAutoresizingMaskIntoConstraints = false
