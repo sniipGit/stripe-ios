@@ -73,11 +73,11 @@ public class CardScanSheet {
 }
 
 extension CardScanSheet: SimpleScanDelegate {
-    func userDidCancelSimple(_ scanViewController: SimpleScanViewController) {
+    public func userDidCancelSimple(_ scanViewController: SimpleScanViewController) {
         completion?(.canceled)
     }
 
-    func userDidScanCardSimple(
+    public func userDidScanCardSimple(
         _ scanViewController: SimpleScanViewController,
         creditCard: CreditCard) {
             let scannedCard = ScannedCard(pan: creditCard.number)

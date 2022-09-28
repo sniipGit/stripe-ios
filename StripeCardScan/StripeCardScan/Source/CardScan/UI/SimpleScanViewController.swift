@@ -58,7 +58,7 @@ import UIKit
  the most sense for your app.
  */
 
-open protocol SimpleScanDelegate: AnyObject {
+public protocol SimpleScanDelegate: AnyObject {
     func userDidCancelSimple(_ scanViewController: SimpleScanViewController)
     func userDidScanCardSimple(_ scanViewController: SimpleScanViewController, creditCard: CreditCard)
 }
@@ -110,12 +110,12 @@ open class SimpleScanViewController: ScanBaseViewController {
     static var torchButtonString = String.Localized.torch
     static var privacyLinkString = String.Localized.scan_card_privacy_link_text
     
-    weak var delegate: SimpleScanDelegate?
+    public weak var delegate: SimpleScanDelegate?
     var scanPerformancePriority: ScanPerformance = .fast
     var maxErrorCorrectionDuration: Double = 4.0
 
     // MARK: Inits
-    override init() {
+    override public init() {
         super.init()
         if UIDevice.current.userInterfaceIdiom == .pad {
             // For the iPad you can use the full screen style but you have to select "requires full screen" in
@@ -127,11 +127,11 @@ open class SimpleScanViewController: ScanBaseViewController {
         }
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUiComponents()
@@ -160,7 +160,7 @@ open class SimpleScanViewController: ScanBaseViewController {
 
       Figure out a better way of allow custom buttons programmatically instead of whole UI buttons.
      */
-    override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         closeButton.removeTarget(self, action: #selector(cancelButtonPress), for: .touchUpInside)
         torchButton.removeTarget(self, action: #selector(torchButtonPress), for: .touchUpInside)
     }
@@ -198,23 +198,23 @@ open class SimpleScanViewController: ScanBaseViewController {
         }
     }
     
-    func setupPreviewViewUi() {
+    open func setupPreviewViewUi() {
         // no ui setup
     }
     
-    func setupBlurViewUi() {
+    open func setupBlurViewUi() {
         blurView.backgroundColor = #colorLiteral(red: 0.2411109507, green: 0.271378696, blue: 0.3280351758, alpha: 0.7020547945)
     }
     
-    func setupRoiViewUi() {
+    open func setupRoiViewUi() {
         roiView.layer.borderColor = UIColor.white.cgColor
     }
     
-    func setupCloseButtonUi() {
+    open func setupCloseButtonUi() {
         closeButton.addTarget(self, action: #selector(cancelButtonPress), for: .touchUpInside)
     }
     
-    func setupTorchButtonUi() {
+    open func setupTorchButtonUi() {
         torchButton.addTarget(self, action: #selector(torchButtonPress), for: .touchUpInside)
     }
     
@@ -225,7 +225,7 @@ open class SimpleScanViewController: ScanBaseViewController {
         descriptionText.font = descriptionText.font.withSize(30)
     }
     
-    func setupCardDetailsUi() {
+    open func setupCardDetailsUi() {
         numberText.isHidden = true
         numberText.textColor = .white
         numberText.textAlignment = .center
@@ -243,7 +243,7 @@ open class SimpleScanViewController: ScanBaseViewController {
         nameText.font = expiryText.font.withSize(20)
     }
     
-    func setupDenyUi() {
+    open func setupDenyUi() {
         let text = SimpleScanViewController.enableCameraPermissionString
         let attributedString = NSMutableAttributedString(string: text)
         attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor.white, range: NSRange(location: 0, length: text.count))
@@ -311,23 +311,23 @@ open class SimpleScanViewController: ScanBaseViewController {
         }
     }
     
-    func setupPreviewViewConstraints() {
+    open func setupPreviewViewConstraints() {
         // make it full screen
         previewView.setAnchorsEqual(to: self.view)
     }
     
-    func setupBlurViewConstraints() {
+    open func setupBlurViewConstraints() {
         blurView.setAnchorsEqual(to: self.previewView)
     }
     
-    func setupRoiViewConstraints() {
+    open func setupRoiViewConstraints() {
         roiView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         roiView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         roiView.heightAnchor.constraint(equalTo: roiView.widthAnchor, multiplier: 1.0 / 1.586).isActive = true
         roiView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
-    func setupCloseButtonConstraints() {
+    open func setupCloseButtonConstraints() {
         let margins = view.layoutMarginsGuide
         closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 16.0).isActive = true
         closeButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
