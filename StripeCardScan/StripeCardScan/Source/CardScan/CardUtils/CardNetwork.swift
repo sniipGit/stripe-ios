@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CardNetwork: Int {
+public enum CardNetwork: Int {
     case VISA
     case MASTERCARD
     case AMEX
@@ -18,7 +18,7 @@ enum CardNetwork: Int {
     case REGIONAL
     case UNKNOWN
 
-    func toString() -> String {
+    public func toString() -> String {
         switch self {
         case .VISA: return "Visa"
         case .MASTERCARD: return "MasterCard"
