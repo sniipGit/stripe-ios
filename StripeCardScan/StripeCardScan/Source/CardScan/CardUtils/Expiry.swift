@@ -9,11 +9,11 @@ public struct Expiry: Hashable {
         return lhs.string == rhs.string
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         self.string.hash(into: &hasher)
     }
     
-    var hashValue: Int {
+    public var hashValue: Int {
         return self.string.hashValue
     }
     
