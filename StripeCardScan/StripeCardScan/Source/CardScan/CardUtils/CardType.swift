@@ -13,7 +13,7 @@ public enum CardType: Int {
     case PREPAID
     case UNKNOWN
 
-    func toString() -> String {
+    public func toString() -> String {
         switch self {
         case .CREDIT: return "Credit"
         case .DEBIT: return "Debit"
@@ -22,7 +22,7 @@ public enum CardType: Int {
         }
     }
 
-    static func fromString(_ str: String) -> CardType {
+    public static func fromString(_ str: String) -> CardType {
         switch str.lowercased() {
         case "credit": return .CREDIT
         case "debit": return .DEBIT
