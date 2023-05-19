@@ -1,11 +1,11 @@
 import Foundation
 
-struct Expiry: Hashable {
+public struct Expiry: Hashable {
     let string: String
     let month: UInt
     let year: UInt
     
-    static func == (lhs: Expiry, rhs: Expiry) -> Bool {
+    public static func == (lhs: Expiry, rhs: Expiry) -> Bool {
         return lhs.string == rhs.string
     }
     
@@ -17,7 +17,7 @@ struct Expiry: Hashable {
         return self.string.hashValue
     }
     
-    func display() -> String {
+    public func display() -> String {
         let twoDigitYear = self.year % 100
         return String(format: "%02d/%02d", self.month, twoDigitYear)
     }

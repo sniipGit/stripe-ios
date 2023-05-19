@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CardType: Int {
+public enum CardType: Int {
     case CREDIT
     case DEBIT
     case PREPAID
